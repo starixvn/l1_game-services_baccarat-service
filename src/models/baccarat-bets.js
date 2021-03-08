@@ -23,7 +23,7 @@ const schema = new mongoose.Schema({
     freeBet: { type: Boolean, default: false },
 });
 
-const bets = mongoose.model("VipBaccarat_cuoc", schema);
-const tmpBets = mongoose.model("VipBaccarat_tmpcuoc", schema);
+const bets = mongoose.model("baccarat_cuoc", schema);
+const tmpBets = mongoose.model("baccarat_tmpcuoc", schema);
 
 export { bets, tmpBets };

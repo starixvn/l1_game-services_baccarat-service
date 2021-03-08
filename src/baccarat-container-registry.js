@@ -3,10 +3,11 @@ import { Table } from "sc-game-base";
 import SettleGameRoundConsumer from "./consumers/settle-game-round-consumer";
 import { bets, rounds, tmpBets } from "./models/index";
 import { Bot } from "./crons/index";
+import BaccaratRoundQuery from "./query-apis/baccarat-round-query";
 
 const { asClass, asValue } = awilix;
 
-export default class VipBaccaratContainerRegistry extends Table.TableContainerRegistry {
+export default class BaccaratContainerRegistry extends Table.TableContainerRegistry {
     registerModels() {
         super.registerModels();
 
@@ -30,6 +31,14 @@ export default class VipBaccaratContainerRegistry extends Table.TableContainerRe
 
         this.container.register({
             bot: asClass(Bot).singleton(),
+        });
+    }
+
+    registerApis() {
+        super.registerApis();
+
+        this.container.register({
+            roundQuery: asClass(BaccaratRoundQuery).singleton(),
         });
     }
 }

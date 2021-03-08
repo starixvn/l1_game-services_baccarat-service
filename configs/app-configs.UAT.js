@@ -42,7 +42,7 @@ export default {
     },
     sentry: {
         sentryUrl: "http://a553a7ce151d47e7b74148303a1b4bbb@10.99.99.187:800/175",
-        logIdentifier: "vip-baccarat",
+        logIdentifier: "baccarat",
         env: "UAT",
     },
     authenticateSettings: {

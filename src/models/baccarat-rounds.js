@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
-import autoIncrement from "mongoose-auto-increment-reworked";
 
-const modelName = "VipBaccarat_phien";
+const modelName = "baccarat_phien";
 
 const card = {
     card: Number,
@@ -37,11 +36,10 @@ const settlementResultSchema = new mongoose.Schema(
 );
 
 const Schema = new mongoose.Schema({
+    id: { type: Number, require: true },
     result: resultSchema,
     settlementResult: settlementResultSchema,
     time: { type: Date, default: new Date() },
 });
-
-Schema.plugin(autoIncrement.MongooseAutoIncrementID.plugin, { modelName, field: "id" });
 
 export default mongoose.model(modelName, Schema);

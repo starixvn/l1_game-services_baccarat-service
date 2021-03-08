@@ -1,6 +1,6 @@
 export default {
-    id: 27,
-    name: "VipBaccarat",
+    id: 10,
+    name: "Baccarat",
     durations: {
         wholeRound: 45,
         placingBets: 30,

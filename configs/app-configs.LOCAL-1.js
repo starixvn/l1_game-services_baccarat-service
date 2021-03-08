@@ -41,9 +41,9 @@ export default {
         },
     },
     sentry: {
-        sentryUrl: "https://85ed10035ab94426a6b454854e4d3a57@sentryuat.sabagame.com/197",
-        logIdentifier: "vip-baccarat",
-        env: "LOCAL",
+        sentryUrl: "http://e6e2bdc2d3ab40c682d0d27c1b1f912a@sentry.lumigame.com/13",
+        logIdentifier: "baccarat",
+        env: "LOCAL_1",
     },
     authenticateSettings: {
         audiences: ["api", "admin-api"],
