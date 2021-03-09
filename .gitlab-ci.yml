@@ -1,7 +1,7 @@
 variables:
-  SERVICE_WORKING_PATH: /l1/vip-baccarat-service/
-  SERVICE_NAME: l1-vip-baccarat-service
-  DOCKER_IMAGE_PATH: l1/game-services/vip-baccarat-service
+  SERVICE_WORKING_PATH: /l1/baccarat-service/
+  SERVICE_NAME: l1-baccarat-service
+  DOCKER_IMAGE_PATH: l1/game-services/baccarat-service
   
 include:
   - project: "ci/luminet/common-ci"
