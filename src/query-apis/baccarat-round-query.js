@@ -9,7 +9,7 @@ export default class BaccaratRoundQuery extends Core.QueryApis.RoundQuery {
             .exec();
 
         return rounds.map((round) => {
-            const result = round.result && round.result.tie === undefined ? round.result : this.convertResult(round);
+            const result = round.result && round.result.tie == undefined ? round.result : this.convertResult(round);
             const settlementResult = round.settlementResult ?? this.convertSettlementResult(result);
 
             return {
@@ -18,6 +18,15 @@ export default class BaccaratRoundQuery extends Core.QueryApis.RoundQuery {
                 settlementResult,
             };
         });
+    }
+
+    async getOne(id, projections = { _id: false }) {
+        const round = await this.roundsRepository.findOne({ id }, projections).lean().exec();
+
+        round.settlementResult = round.result;
+        round.result = this.convertResult(round);
+
+        return round;
     }
 
     convertSettlementResult(roundResult) {
