@@ -2,8 +2,8 @@ export default {
     hostingPort: 5000,
     apiSettings: {
         enabledApi: true,
-        apiUrl: "http://10.2.189.51:7300",
-        authUrl: "http://10.2.189.51:7303",
+        apiUrl: "http://l1_game_api_uat:5000",
+        authUrl: "http://l1_auth_api_uat:5000",
         client: {
             id: "game-server",
             secret: "gameserver@20luminet&",
@@ -14,9 +14,9 @@ export default {
         enabledApiLogs: true,
     },
     mainServerApiSettings: {
-        url: "http://10.2.189.51:7777/uat/main/api",
+        url: "http://l1_game_server_uat:5000/api",
         auth: {
-            url: "http://10.2.189.51:7303",
+            url: "http://l1_auth_api_uat:5000",
             id: "game-services",
             secret: "gameservices@20luminet&",
         },
@@ -29,6 +29,7 @@ export default {
         pingTimeout: 60 * 1000,
         transports: ["websocket"],
         allowUpgrades: false,
+        perMessageDeflate: false,
     },
     enabledLogs: true,
     database: {
@@ -41,7 +42,7 @@ export default {
         },
     },
     sentry: {
-        sentryUrl: "http://a553a7ce151d47e7b74148303a1b4bbb@10.99.99.187:800/175",
+        sentryUrl: "http://7513925bd02d436986074f3f6e6e8392@10.99.99.187:800/246",
         logIdentifier: "baccarat",
         env: "UAT",
     },
