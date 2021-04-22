@@ -42,7 +42,7 @@ export default {
         },
     },
     sentry: {
-        sentryUrl: "http://2ea4b387e2e8480dac5da54735f1e0bb@10.99.99.187:800/244",
+        sentryUrl: "http://8ac47fca6d3e4a41908896a64ef201ac@10.99.99.187:800/53",
         logIdentifier: "baccarat",
         env: "UAT",
     },

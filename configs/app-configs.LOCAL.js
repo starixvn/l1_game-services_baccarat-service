@@ -42,7 +42,7 @@ export default {
         },
     },
     sentry: {
-        sentryUrl: "https://6de994a97ded4aeb818d9dc21a84d80f@sentry.lumigame.com/21",
+        sentryUrl: "https://acb36eb835d948d68c1aad9873754d51@sentry.lumigame.com/27",
         logIdentifier: "baccarat",
         env: "LOCAL",
     },

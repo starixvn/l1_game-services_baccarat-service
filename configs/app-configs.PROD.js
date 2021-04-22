@@ -43,7 +43,7 @@ export default {
         },
     },
     sentry: {
-        sentryUrl: "http://3a2cde6ec6bb4197a045432aae22990d@10.99.99.187:803/140",
+        sentryUrl: "http://2b5b82bf699543ddb296364568bc30be@10.99.99.187:803/52",
         logIdentifier: "baccarat",
         env: "PROD",
     },
