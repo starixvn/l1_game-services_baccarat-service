@@ -73,6 +73,14 @@ describe("bot test", () => {
 
             expect(baccaratBot.playerBankerOpts).toContain(choice);
         });
+
+        it("should return player banker options as default", () => {
+            baccaratBot.resetAllBets();
+
+            const choice = baccaratBot.getBetChoice(bot);
+
+            expect(baccaratBot.playerBankerOpts).toContain(choice);
+        });
     });
 
     describe("getMaxBet test", () => {
