@@ -21,8 +21,7 @@ export default class SettleGameRoundConsumer extends Table.EventConsumers.TableS
 
                     const betAmount = bet[choice];
                     const originalOdds = odds[choice] || 1;
-                    const effectiveOdds = originalOdds;
-                    const winAmount = win ? betAmount * effectiveOdds : 0;
+                    const winAmount = win ? betAmount * originalOdds : 0;
 
                     result.totalBetAmount += betAmount;
                     result.totalWin += winAmount;
@@ -75,11 +74,13 @@ export default class SettleGameRoundConsumer extends Table.EventConsumers.TableS
     async settleRound() {
         const result = this.generateResult();
         const settlementResult = this.definition.settle(result);
+        const { roundId, exchangeRates } = this.gameData;
         const newRound = await this.roundsRepository.create({
-            id: this.gameData.roundId,
+            id: roundId,
             ...result,
             result: settlementResult,
             time: new Date(),
+            exchangeRateId: exchangeRates.exId,
         });
 
         if (newRound) {
