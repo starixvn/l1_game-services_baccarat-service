@@ -76,7 +76,7 @@ export default class Bot extends Table.Crons.TableGameBot {
         const minBet = this.getMinBet();
         const maxBetPerChoice = gameConfigs.choices_maxbet[choice];
         const botMaxBet = gameConfigs.bot_maxbet;
-        let maxBet = Math.min(maxBetPerChoice, botMaxBet);
+        const maxBet = Math.min(maxBetPerChoice, botMaxBet);
 
         if (this.playerBankerOpts.includes(choice) || this.bigSmallOpts.includes(choice)) {
             const isSmallTicket = this.totalTickets === 0 ? true : (this.smallTickets * 100) / this.totalTickets < this.smallTicketRatio;
@@ -88,8 +88,7 @@ export default class Bot extends Table.Crons.TableGameBot {
     }
 
     getRandomChoiceFromGroup(group) {
-        const randomIndex = (Math.random() * group.length) >> 0;
-        return group[randomIndex];
+        return this.chance.pickone(group);
     }
 
     getTotalAmountOnChoiceGroup(choices) {
@@ -125,7 +124,7 @@ export default class Bot extends Table.Crons.TableGameBot {
     }
 
     convertAmountToChip(amount) {
-        const chipList = constants.chips.filter((chip) => amount % chip === 0);
+        const chipList = constants.chips.filter((chip) => amount / chip >= 1);
 
         return chipList.length > 0 ? chipList[0] : this.getMinBet();
     }

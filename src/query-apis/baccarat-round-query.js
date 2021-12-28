@@ -1,5 +1,4 @@
 import { Core } from "sc-game-base";
-import { resultHelper } from "../helpers/index";
 
 export default class BaccaratRoundQuery extends Core.QueryApis.RoundQuery {
     async getList(limit, projections) {
@@ -9,8 +8,8 @@ export default class BaccaratRoundQuery extends Core.QueryApis.RoundQuery {
             .exec();
 
         return rounds.map((round) => {
-            const result = round.result && round.result.tie == undefined ? round.result : this.convertResult(round);
-            const settlementResult = round.settlementResult ?? this.convertSettlementResult(result);
+            const result = this.convertResult(round);
+            const settlementResult = round.result;
 
             return {
                 roundId: round.id,
@@ -27,10 +26,6 @@ export default class BaccaratRoundQuery extends Core.QueryApis.RoundQuery {
         round.result = this.convertResult(round);
 
         return round;
-    }
-
-    convertSettlementResult(roundResult) {
-        return resultHelper.getSettlementResult(roundResult);
     }
 
     convertResult(round) {

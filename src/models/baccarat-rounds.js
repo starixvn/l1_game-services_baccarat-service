@@ -33,6 +33,7 @@ const Schema = new mongoose.Schema({
     banker: { type: hand },
     result: settlementResultSchema,
     time: { type: Date, default: new Date() },
+    exchangeRateId: { type: Number, require: true },
 });
 
 export default mongoose.model(modelName, Schema);
