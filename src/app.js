@@ -6,7 +6,12 @@ import gameSettings from "./game-settings";
 import { resultHelper } from "./helpers";
 
 const run = async () => {
-    const definition = new Table.TableGameDefinition(gameSettings, resultHelper.generateResult, resultHelper.getSettlementResult);
+    const definition = new Table.TableGameDefinition(
+        gameSettings,
+        resultHelper.generateResult,
+        resultHelper.getSettlementResult,
+        resultHelper.generateRawResultForMd5
+    );
     const gameData = new Table.TableGameData(gameSettings.durations.wholeRound);
 
     const container = new BaccaratContainerRegistry().register(appConfigs, definition, gameData);
