@@ -54,7 +54,8 @@ export default class SettleGameRoundConsumer extends Table.EventConsumers.TableS
         const { roundId, exchangeRates } = this.gameData;
         const newRound = await this.roundsRepository.create({
             id: roundId,
-            ...result,
+            player: result.player,
+            banker: result.banker,
             result: settlementResult,
             time: new Date(),
             exchangeRateId: exchangeRates.exId,

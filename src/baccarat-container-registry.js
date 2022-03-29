@@ -1,7 +1,7 @@
 import awilix from "awilix";
 import { Table } from "sc-game-base";
 import { SettleGameRoundConsumer, RoundResultConsumer } from "./consumers";
-import { bets, rounds, tmpBets, md5s } from "./models/index";
+import { bets, rounds, tmpBets, results } from "./models/index";
 import { Bot } from "./crons/index";
 import BaccaratRoundQuery from "./query-apis/baccarat-round-query";
 
@@ -15,7 +15,7 @@ export default class BaccaratContainerRegistry extends Table.TableContainerRegis
             roundsRepository: asValue(rounds),
             betsRepository: asValue(bets),
             tempBetsRepository: asValue(tmpBets),
-            md5sRepository: asValue(md5s),
+            resultsRepository: asValue(results),
         });
     }
 
