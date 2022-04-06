@@ -124,6 +124,105 @@ describe("RoundResultConsumer test", () => {
                     expect(actual.cards).toStrictEqual(cards);
                 });
             });
+
+            describe("when result from admin with 5 cards", () => {
+                describe("when player has 3 cards", () => {
+                    it("should return expected cards", () => {
+                        // arrange
+                        gameData.settlementResultFromAdmin.result = {
+                            player: [
+                                { card: 9, type: 2 },
+                                { card: 12, type: 3 },
+                                { card: 10, type: 2 },
+                            ],
+                            banker: [
+                                { card: 9, type: 0 },
+                                { card: 7, type: 1 },
+                            ],
+                        };
+                        const consumer = new RoundResultConsumer(gameData);
+                        const cards = [
+                            { card: 9, type: 2 },
+                            { card: 9, type: 0 },
+                            { card: 12, type: 3 },
+                            { card: 7, type: 1 },
+                            { card: 10, type: 2 },
+                            { card: 2, type: 2 },
+                        ];
+
+                        // act
+                        const actual = consumer.generateResult();
+
+                        // assert
+                        expect(actual.cards).toStrictEqual(cards);
+                    });
+                });
+
+                describe("when banker has 3 cards", () => {
+                    it("should return expected cards", () => {
+                        // arrange
+                        gameData.settlementResultFromAdmin.result = {
+                            banker: [
+                                { card: 9, type: 2 },
+                                { card: 12, type: 3 },
+                                { card: 10, type: 2 },
+                            ],
+                            player: [
+                                { card: 9, type: 0 },
+                                { card: 7, type: 1 },
+                            ],
+                        };
+                        const consumer = new RoundResultConsumer(gameData);
+                        const cards = [
+                            { card: 9, type: 0 },
+                            { card: 9, type: 2 },
+                            { card: 7, type: 1 },
+                            { card: 12, type: 3 },
+                            { card: 10, type: 2 },
+                            { card: 2, type: 2 },
+                        ];
+
+                        // act
+                        const actual = consumer.generateResult();
+
+                        // assert
+                        expect(actual.cards).toStrictEqual(cards);
+                    });
+                });
+            });
+
+            describe("when result from admin with 6 cards", () => {
+                it("should return expected cards", () => {
+                    // arrange
+                    gameData.settlementResultFromAdmin.result = {
+                        player: [
+                            { card: 9, type: 2 },
+                            { card: 12, type: 3 },
+                            { card: 10, type: 2 },
+                        ],
+                        banker: [
+                            { card: 9, type: 0 },
+                            { card: 7, type: 1 },
+                            { card: 2, type: 2 },
+                        ],
+                    };
+                    const consumer = new RoundResultConsumer(gameData);
+                    const cards = [
+                        { card: 9, type: 2 },
+                        { card: 9, type: 0 },
+                        { card: 12, type: 3 },
+                        { card: 7, type: 1 },
+                        { card: 10, type: 2 },
+                        { card: 2, type: 2 },
+                    ];
+
+                    // act
+                    const actual = consumer.generateResult();
+
+                    // assert
+                    expect(actual.cards).toStrictEqual(cards);
+                });
+            });
         });
 
         describe("when not set result", () => {
