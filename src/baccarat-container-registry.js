@@ -1,6 +1,6 @@
 import awilix from "awilix";
 import { Table } from "sc-game-base";
-import { SettleGameRoundConsumer, RoundResultConsumer } from "./consumers";
+import { SettleGameRoundConsumer, RoundResultConsumer, PlaceBetConsumer } from "./consumers";
 import { bets, rounds, tmpBets, results } from "./models/index";
 import { Bot } from "./crons/index";
 import BaccaratRoundQuery from "./query-apis/baccarat-round-query";
@@ -23,6 +23,7 @@ export default class BaccaratContainerRegistry extends Table.TableContainerRegis
         super.registerConsumers();
 
         this.container.register({
+            placeBetConsumer: asClass(PlaceBetConsumer).singleton(),
             settleGameRoundConsumer: asClass(SettleGameRoundConsumer).singleton().proxy(),
             roundResultConsumer: asClass(RoundResultConsumer).singleton(),
         });
