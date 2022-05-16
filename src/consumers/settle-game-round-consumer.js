@@ -1,7 +1,5 @@
 import { Table } from "sc-game-base";
-
 import constants from "../constants";
-import { BaccaratGame, resultHelper } from "../helpers";
 
 export default class SettleGameRoundConsumer extends Table.EventConsumers.TableSettleGameRoundConsumer {
     calculateBetResult(settlementResult, bet, odds) {
@@ -50,34 +48,14 @@ export default class SettleGameRoundConsumer extends Table.EventConsumers.TableS
         return betResult;
     }
 
-    generateResult() {
-        const resultFromAdmin = this.gameData.settlementResultFromAdmin;
-
-        if (this.gameData.roundId === resultFromAdmin.roundId) {
-            const cards = resultHelper.getCards();
-            const baccaratGame = new BaccaratGame(cards);
-            baccaratGame.setResult(resultFromAdmin.result);
-
-            let action = "";
-
-            do {
-                action = baccaratGame.getAction();
-                baccaratGame[action]();
-            } while (action !== BaccaratGame.Actions.finalComparison);
-
-            return { player: baccaratGame.player, banker: baccaratGame.banker };
-        } else {
-            return this.definition.generateResult();
-        }
-    }
-
     async settleRound() {
         const result = this.generateResult();
         const settlementResult = this.definition.settle(result);
         const { roundId, exchangeRates } = this.gameData;
         const newRound = await this.roundsRepository.create({
             id: roundId,
-            ...result,
+            player: result.player,
+            banker: result.banker,
             result: settlementResult,
             time: new Date(),
             exchangeRateId: exchangeRates.exId,

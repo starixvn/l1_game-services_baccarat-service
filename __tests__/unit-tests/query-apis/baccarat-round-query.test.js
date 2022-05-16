@@ -1,7 +1,7 @@
 import { stubMongooseModelStupidly } from "jest-micro-auto-stub";
 import mongoose from "mongoose";
 
-import BaccaratRoundQuery from "../../src/query-apis/baccarat-round-query";
+import BaccaratRoundQuery from "../../../src/query-apis/baccarat-round-query";
 
 describe("BaccaratRoundQuery test", () => {
     /** @type {mongoose.Model}*/

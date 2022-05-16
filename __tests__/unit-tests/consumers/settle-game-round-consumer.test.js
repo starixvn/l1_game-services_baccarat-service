@@ -1,11 +1,11 @@
 import { stub } from "jest-micro-auto-stub";
 import { Core, Table } from "sc-game-base";
 
-import SettleGameRoundConsumer from "../../src/consumers/settle-game-round-consumer";
-import { card } from "../../src/helpers/card";
-import { getCards } from "../../src/helpers/result-helper";
+import SettleGameRoundConsumer from "../../../src/consumers/settle-game-round-consumer";
+import { card } from "../../../src/helpers/card";
+import { getCards } from "../../../src/helpers/result-helper";
 
-jest.mock("../../src/helpers/result-helper.js");
+jest.mock("../../../src/helpers/result-helper.js");
 describe("SettleGameRoundConsumer tests", () => {
     const definition = new Table.TableGameDefinition({ id: 1, name: "game name" });
     definition.choices = ["player", "banker", "big", "small", "tie", "playerPair", "bankerPair"];
@@ -40,37 +40,6 @@ describe("SettleGameRoundConsumer tests", () => {
         expect(consumer instanceof Table.EventConsumers.TableSettleGameRoundConsumer).toBeTruthy();
     });
 
-    describe("generateResult_", () => {
-        it("_setResult from admin_doesn't call definition.generateResult", () => {
-            gameData.roundId = 100;
-            gameData.settlementResultFromAdmin = {
-                roundId: 100,
-                result: {
-                    player: [
-                        { card: 1, type: 0 },
-                        { card: 5, type: 1 },
-                    ],
-                    banker: [
-                        { card: 1, type: 0 },
-                        { card: 3, type: 1 },
-                    ],
-                },
-            };
-
-            consumer.generateResult();
-
-            expect(definition.generateResult).not.toHaveBeenCalled();
-        });
-
-        it("_auto generateResult_calls definition.generateResult", () => {
-            gameData.settlementResultFromAdmin = {};
-
-            consumer.generateResult();
-
-            expect(definition.generateResult).toHaveBeenCalled();
-        });
-    });
-
     describe("_settleRound", () => {
         beforeEach(() => {
             spyOn(consumer, "settleBets");
@@ -80,6 +49,8 @@ describe("SettleGameRoundConsumer tests", () => {
             roundsRepository.create = jest.fn(() => {
                 return { id: 1, time: Date.now() };
             });
+            const result = { player: {}, banker: {} };
+            spyOn(consumer, "generateResult").and.callFake(() => result);
 
             // act
             consumer.settleRound();
