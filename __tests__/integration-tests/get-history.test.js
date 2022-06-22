@@ -58,7 +58,6 @@ export const getHistoryTest = () => {
                         playerPair: 11,
                         bankerPair: 11,
                     },
-                    partnerId: "dummy-partner-id",
                     rate: 1,
                     betLogDetails: [],
                 },
