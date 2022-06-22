@@ -43,6 +43,9 @@ export default {
         useAuthenticate: true,
         audiences: ["api", "admin-api"],
     },
+    userServiceSettings: {
+        url: "http://l1_user_service_local:5000",
+    },
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
     enableCorsWs: true,
     corsUrls: [
