@@ -2,8 +2,8 @@ export default {
     hostingPort: 5000,
     apiSettings: {
         enabledApi: true,
-        apiUrl: "http://l1_game_api_local:5000",
-        authUrl: "http://l1_auth_api_local:5000",
+        apiUrl: "http://l1_game_api_local_2:5000",
+        authUrl: "http://l1_auth_api_local_2:5000",
         client: {
             id: "game-server",
             secret: "gameserver@20luminet&",
@@ -22,7 +22,7 @@ export default {
     },
     enabledLogs: true,
     database: {
-        url: "mongodb://lmn_backend:LmnBackend@10.10.50.12:39100,10.10.50.13:39100,10.10.50.14:39100/?replicaSet=L1Local&appName=Baccarat",
+        url: "mongodb://lmn_backend:LmnBackend@10.10.50.12:39102,10.10.50.13:39102,10.10.50.14:39102/?replicaSet=L1ppLocal&appName=Baccarat",
         options: {
             dbName: "minigame",
             useNewUrlParser: true,
@@ -33,10 +33,10 @@ export default {
     sentry: {
         sentryUrl: "https://13f39b8359404ed5aec23655e64ccf78@sentry.lumigame.com/2",
         logIdentifier: "baccarat",
-        env: "LOCAL",
+        env: "LOCAL_2",
     },
     authenticateSettings: {
-        url: "http://l1_auth_api_local:5000",
+        url: "http://l1_auth_api_local_2:5000",
         id: "game-services",
         secret: "gameservices@20luminet&",
         requestTimeout: 10000,
@@ -44,24 +44,25 @@ export default {
         audiences: ["api", "admin-api"],
     },
     userServiceSettings: {
-        url: "http://l1_user_service_local:5000",
+        url: "http://l1_user_service_local_2:5000",
     },
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
     enableCorsWs: true,
     corsUrls: [
         "http://localhost:7456",
         "http://localhost:7000",
-        "http://games.lumigame.com",
-        "https://games.lumigame.com",
-        "http://admin.lumigame.com",
-        "https://admin.lumigame.com",
+        "http://l1-games2.lumigame.com",
+        "https://l1-games2.lumigame.com",
+        "http://l1-admin2.lumigame.com",
+        "https://l1-admin2.lumigame.com",
         "http://localhost:3000",
-        "http://l1-m.lumigame.com",
-        "https://l1-m.lumigame.com",
+        "http://l1-m2.lumigame.com",
+        "https://l1-m2.lumigame.com",
     ],
     metrics: {
         enable: true,
         secretKey: "6c1f0f28-70f2-46ae-b031-22624a6cd8df",
     },
     enableMsgpackParser: false,
+    chips: [2000, 1000, 500, 200, 100, 50, 10, 5, 1],
 };
