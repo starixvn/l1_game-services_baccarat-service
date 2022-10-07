@@ -28,12 +28,12 @@ const settlementResultSchema = new mongoose.Schema(
 );
 
 const Schema = new mongoose.Schema({
-    id: { type: Number, require: true },
+    id: { type: Number, required: true },
     player: { type: hand },
     banker: { type: hand },
     result: settlementResultSchema,
     time: { type: Date, default: new Date() },
-    exchangeRateId: { type: Number, require: true },
+    exchangeRateId: { type: Number, required: true },
 });
 
 export default mongoose.model(modelName, Schema);
