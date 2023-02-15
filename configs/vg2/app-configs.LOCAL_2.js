@@ -58,14 +58,6 @@ export default {
         url: "http://l2_user_service_local_2:5000",
     },
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
-    enableCorsWs: true,
-    corsUrls: [
-        "http://localhost:7456",
-        "http://localhost:7000",
-        "http://localhost:3000",
-        "http://l2-m2.lumigame.com",
-        "https://l2-m2.lumigame.com",
-    ],
     metrics: {
         enable: true,
         secretKey: "6c1f0f28-70f2-46ae-b031-22624a6cd8df",
