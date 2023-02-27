@@ -64,6 +64,8 @@ describe("SettleGameRoundConsumer tests", () => {
             roundsRepository.create = jest.fn(() => {
                 return null;
             });
+            const result = { player: {}, banker: {} };
+            spyOn(consumer, "generateResult").and.callFake(() => result);
 
             // act
             consumer.settleRound();
