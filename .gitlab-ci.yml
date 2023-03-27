@@ -61,3 +61,17 @@ unit-test-js:
     reports:
       junit: coverage/*.xml
       cobertura: coverage/cobertura-coverage.xml
+
+smoke-test:
+  stage: post-deploy
+  variables:
+    PRODUCT: $SMOKE_PRODUCT_NAME
+    PROJECT: $SMOKE_PROJECT_NAME
+    MODE: $SMOKE_MODE
+    ENV: $ENV_NAME    
+  allow_failure: true
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^deploy-.*-local\d*-.*/ && $DEPLOY_BY == "rocketor"'
+  trigger: 
+    project: rnd/testing/trigger-auto-sc1
+    branch: test
