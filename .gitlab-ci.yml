@@ -1,6 +1,3 @@
-variables:
-  SMOKE_PRODUCT_NAME: baccarat
-
 include:
   - project: "ci/repos-ci/pentagon_l1_baccarat_service"
     ref: master
@@ -62,16 +59,30 @@ unit-test-js:
       junit: coverage/*.xml
       cobertura: coverage/cobertura-coverage.xml
 
+prepare-variables:
+  stage: post-deploy    
+  script:
+    - apk add jq
+    - GAME_ID_FROM_ROCKETOR=$(echo $VARS_DATA | jq '.["services"][0]["game_id"]' | tr -d '"')
+    - echo $GAME_ID_FROM_ROCKETOR
+    - GAME_ID=$([ $GAME_ID_FROM_ROCKETOR == "null" ] && echo $SMOKE_PRODUCT_NAME || echo $GAME_ID_FROM_ROCKETOR)
+    - echo "SMOKE_GAME_ID=$GAME_ID" >> variables.env
+  artifacts:
+    reports:
+      dotenv: variables.env
+    expire_in: 1 day
+
 smoke-test:
   stage: post-deploy
+  needs: ["prepare-variables"]
   variables:
-    PRODUCT: $SMOKE_PRODUCT_NAME
-    PROJECT: $SMOKE_PROJECT_NAME
-    MODE: $SMOKE_MODE
+    PRODUCT: $SMOKE_GAME_ID
     ENV: $ENV_NAME    
+    TRIGGERED_BY_DEPLOYMENT: 'true'
+    MODE: 'SMOKE'
   allow_failure: true
   rules:
     - if: '$CI_COMMIT_TAG =~ /^deploy-.*-local\d*-.*/ && $DEPLOY_BY == "rocketor"'
   trigger: 
     project: rnd/testing/trigger-auto-sc1
-    branch: test
+    branch: master
