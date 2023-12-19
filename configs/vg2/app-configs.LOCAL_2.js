@@ -2,8 +2,8 @@ export default {
     hostingPort: 5000,
     apiSettings: {
         enabledApi: true,
-        apiUrl: "http://l1_game_api_local_2:5000",
-        authUrl: "http://l1_auth_api_local_2:5000",
+        apiUrl: "http://l2_game_api_local_2:5000",
+        authUrl: "http://l2_auth_api_local_2:5000",
         client: {
             id: "game-server",
             secret: "gameserver@20luminet&",
@@ -14,9 +14,9 @@ export default {
         enabledApiLogs: true,
     },
     mainServerApiSettings: {
-        url: "http://l1_game_server_local_2:5000/api",
+        url: "http://l2_game_server_local_2:5000/api",
         auth: {
-            url: "http://l1_auth_api_local_2:5000",
+            url: "http://l2_auth_api_local_2:5000",
             id: "game-services",
             secret: "gameservices@20luminet&",
         },
@@ -33,7 +33,7 @@ export default {
     },
     enabledLogs: true,
     database: {
-        url: "mongodb://lmn_backend:LmnBackend@10.10.50.12:39102,10.10.50.13:39102,10.10.50.14:39102/?replicaSet=L1ppLocal&appName=Baccarat",
+        url: "mongodb://lmn_backend:LmnBackend@10.10.50.12:39202,10.10.50.13:39202,10.10.50.14:39202/?replicaSet=L2ppLocal&appName=Baccarat",
         options: {
             dbName: "minigame",
             useNewUrlParser: true,
@@ -42,7 +42,7 @@ export default {
         },
     },
     sentry: {
-        sentryUrl: "https://13f39b8359404ed5aec23655e64ccf78@sentry.lumigame.com/2",
+        sentryUrl: "https://acb36eb835d948d68c1aad9873754d51@sentry.lumigame.com/27",
         logIdentifier: "baccarat",
         env: "LOCAL_2",
     },
