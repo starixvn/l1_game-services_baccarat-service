@@ -52,6 +52,7 @@ export default class SettleGameRoundConsumer extends Table.EventConsumers.TableS
         const result = this.generateResult();
         const settlementResult = this.definition.settle(result);
         const { roundId, exchangeRates } = this.gameData;
+
         const newRound = await this.roundsRepository.create({
             id: roundId,
             player: result.player,

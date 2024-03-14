@@ -1,11 +1,11 @@
-import { stubMongooseModelStupidly } from "jest-micro-auto-stub";
+import { stubMongoose } from "jest-micro-auto-stub";
 import mongoose from "mongoose";
 
 import BaccaratRoundQuery from "../../../src/query-apis/baccarat-round-query";
 
 describe("BaccaratRoundQuery test", () => {
     /** @type {mongoose.Model}*/
-    const roundsRepository = stubMongooseModelStupidly(mongoose.Model);
+    const roundsRepository = stubMongoose(mongoose.Model);
 
     const baccaratRoundQuery = new BaccaratRoundQuery(roundsRepository);
     it("getList_always_returns correct data", async () => {

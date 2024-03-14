@@ -1,4 +1,5 @@
-import { stub } from "jest-micro-auto-stub";
+import mongoose from "mongoose";
+import { stub, stubMongoose } from "jest-micro-auto-stub";
 import { Core, Table } from "sc-game-base";
 
 import SettleGameRoundConsumer from "../../../src/consumers/settle-game-round-consumer";
@@ -18,12 +19,12 @@ describe("SettleGameRoundConsumer tests", () => {
     getCards.mockReturnValueOnce(card);
 
     /** @type {mongoose.Model}*/
-    const roundsRepository = { find: () => {}, create: () => {} };
+    const roundsRepository = stubMongoose(mongoose.Model);
     /** @type {mongoose.Model}*/
-    const betsRepository = { find: () => {} };
+    const betsRepository = stubMongoose(mongoose.Model);
 
     /** @type {mongoose.Model}*/
-    const tempBetsRepository = { find: () => {} };
+    const tempBetsRepository = stubMongoose(mongoose.Model);
 
     const consumer = new SettleGameRoundConsumer({
         definition,
@@ -42,15 +43,16 @@ describe("SettleGameRoundConsumer tests", () => {
 
     describe("_settleRound", () => {
         beforeEach(() => {
-            spyOn(consumer, "settleBets");
+            jest.spyOn(consumer, "settleBets");
         });
+
         it("_create round successful_calls settleBets", () => {
             // arrange
             roundsRepository.create = jest.fn(() => {
                 return { id: 1, time: Date.now() };
             });
             const result = { player: {}, banker: {} };
-            spyOn(consumer, "generateResult").and.callFake(() => result);
+            jest.spyOn(consumer, "generateResult").mockReturnValueOnce(result);
 
             // act
             consumer.settleRound();
@@ -65,7 +67,7 @@ describe("SettleGameRoundConsumer tests", () => {
                 return null;
             });
             const result = { player: {}, banker: {} };
-            spyOn(consumer, "generateResult").and.callFake(() => result);
+            jest.spyOn(consumer, "generateResult").mockReturnValueOnce(result);
 
             // act
             consumer.settleRound();
