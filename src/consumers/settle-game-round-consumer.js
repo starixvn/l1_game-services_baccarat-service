@@ -75,6 +75,8 @@ export default class SettleGameRoundConsumer extends Table.EventConsumers.TableS
             this.gameData.roundId = finish.roundId + 1;
 
             await this.settleBets(finish);
+
+            this.roundResultPublisher.publishWinners(roundId, this.gameData.winningPlayers);
         }
     }
 }
