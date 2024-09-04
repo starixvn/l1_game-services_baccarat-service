@@ -1,5 +1,7 @@
 import { bets, tmpBets } from "./baccarat-bets";
-import rounds from "./baccarat-rounds";
 import results from "./baccarat-results";
+import rounds from "./baccarat-rounds";
+import hourlySummaries from "./hourly-summaries";
 
-export { rounds, bets, tmpBets, results };
+export { bets, hourlySummaries, results, rounds, tmpBets };
+
