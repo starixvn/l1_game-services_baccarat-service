@@ -5,7 +5,7 @@ import { Bot } from "./crons/index";
 import { bets, hourlySummaries, results, rounds, tmpBets } from "./models";
 import BaccaratRoundQuery from "./query-apis/baccarat-round-query";
 import RTPQuery from "./query-apis/rtp-query";
-import { SocketRouter } from "./routers";
+import { HttpRouter, SocketRouter } from "./routers";
 
 const { asClass, asValue } = awilix;
 
@@ -54,6 +54,7 @@ export default class BaccaratContainerRegistry extends Table.TableContainerRegis
 
         this.container.register({
             socketRouter: asClass(SocketRouter).proxy(),
+            httpRouter: asClass(HttpRouter),
         });
     }
 }
