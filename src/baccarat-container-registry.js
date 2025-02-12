@@ -1,7 +1,7 @@
 import awilix from "awilix";
 import { Table } from "sc-game-base";
 import { OutGameConsumer, PlaceBetConsumer, RoundResultConsumer, SettleGameRoundConsumer } from "./consumers";
-import { Bot } from "./crons/index";
+import { Bot, BaccaratProcessBetQueue } from "./crons/index";
 import { bets, hourlySummaries, results, rounds, tmpBets } from "./models";
 import BaccaratRoundQuery from "./query-apis/baccarat-round-query";
 import RTPQuery from "./query-apis/rtp-query";
@@ -38,6 +38,7 @@ export default class BaccaratContainerRegistry extends Table.TableContainerRegis
 
         this.container.register({
             bot: asClass(Bot).singleton(),
+            processBetQueue: asClass(BaccaratProcessBetQueue).singleton().proxy(),
         });
     }
 
