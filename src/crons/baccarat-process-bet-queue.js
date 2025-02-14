@@ -1,6 +1,6 @@
-import { Core } from "sc-game-base";
+import { Table } from "sc-game-base";
 
-export default class BaccaratProcessBetQueue extends Core.Crons.ProcessBetQueue {
+export default class BaccaratProcessBetQueue extends Table.Crons.TableProcessBetQueue {
 
     isCountOnTotalBets(player) {
         return this.gameData.currencies.some(
