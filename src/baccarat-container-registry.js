@@ -6,6 +6,7 @@ import { bets, hourlySummaries, results, rounds, tmpBets } from "./models";
 import BaccaratRoundQuery from "./query-apis/baccarat-round-query";
 import RTPQuery from "./query-apis/rtp-query";
 import { HttpRouter, SocketRouter } from "./routers";
+import { ViewConsumer, BaseViewRouter, GameStatusPublisher, RoundResultPublisher } from "sc-game-base-view-module";
 
 const { asClass, asValue } = awilix;
 
@@ -30,6 +31,7 @@ export default class BaccaratContainerRegistry extends Table.TableContainerRegis
             settleGameRoundConsumer: asClass(SettleGameRoundConsumer).singleton().proxy(),
             roundResultConsumer: asClass(RoundResultConsumer).singleton(),
             userDisconnectConsumer: asClass(OutGameConsumer).singleton(),
+            viewConsumer: asClass(ViewConsumer).singleton(),
         });
     }
 
@@ -57,6 +59,16 @@ export default class BaccaratContainerRegistry extends Table.TableContainerRegis
         this.container.register({
             socketRouter: asClass(SocketRouter).proxy(),
             httpRouter: asClass(HttpRouter),
+            baseViewRouter: asClass(BaseViewRouter).proxy(),
+        });
+    }
+
+    registerPublishers() {
+        super.registerPublishers();
+
+        this.container.register({
+            gameStatusPublisher: asClass(GameStatusPublisher).singleton(),
+            roundResultPublisher: asClass(RoundResultPublisher).singleton(),
         });
     }
 }

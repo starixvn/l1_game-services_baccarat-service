@@ -8,6 +8,8 @@ import { Core, Table } from "sc-game-base";
 
 import BaccaratContainerRegistry from "./baccarat-container-registry";
 import { resultHelper } from "./helpers";
+import { registerViewModule } from "sc-game-base-view-module";
+import GameData from "./game-data";
 
 const run = async () => {
     const definition = new Table.TableGameDefinition(
@@ -16,12 +18,14 @@ const run = async () => {
         resultHelper.getSettlementResult,
         resultHelper.generateRawResultForHash
     );
-    const gameData = new Table.TableGameData(gameSettings.durations.wholeRound);
+    const gameData = new GameData(gameSettings.durations.wholeRound);
+    gameData.viewPlayers = {};
 
     const container = new BaccaratContainerRegistry().register(appConfigs, definition, gameData);
     const app = new Core.BaseGameApp("Baccarat", appConfigs);
     await app.run();
     await app.startGame(container);
+    registerViewModule(app, container, definition);
 };
 
 run();
