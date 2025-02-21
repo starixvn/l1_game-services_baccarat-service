@@ -6,7 +6,10 @@ import { bets, hourlySummaries, results, rounds, tmpBets } from "./models";
 import BaccaratRoundQuery from "./query-apis/baccarat-round-query";
 import RTPQuery from "./query-apis/rtp-query";
 import { HttpRouter, SocketRouter } from "./routers";
-import { ViewConsumer, BaseViewRouter, GameStatusPublisher, RoundResultPublisher } from "sc-game-base-view-module";
+import ViewConsumer from "./consumers/view-consumer";
+import BaseViewRouter from "./routers/base-view-router";
+import GameStatusPublisher from "./event-publishers/game-status-publisher";
+import RoundResultPublisher from "./event-publishers/round-result-publisher";
 
 const { asClass, asValue } = awilix;
 

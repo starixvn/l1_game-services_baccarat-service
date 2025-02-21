@@ -8,7 +8,7 @@ import { Core, Table } from "sc-game-base";
 
 import BaccaratContainerRegistry from "./baccarat-container-registry";
 import { resultHelper } from "./helpers";
-import { registerViewModule } from "sc-game-base-view-module";
+import { registerViewModule } from "./register-view-module";
 import GameData from "./game-data";
 
 const run = async () => {
