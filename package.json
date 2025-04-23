@@ -28,7 +28,7 @@
         "chance": "^1.1.7",
         "random": "^3.0.6",
         "random-js": "^2.1.0",
-        "sc-game-base": "4.1.0",
+        "sc-game-base": "4.1.4-beta.0",
         "sc-instrument": "1.1.1"
     },
     "resolutions": {
@@ -37,7 +37,8 @@
         "socket.io-prom-metrics": "1.0.3",
         "axios": "1.7.4",
         "body-parser": "1.20.3",
-        "mongoose": " 5.13.22"
+        "mongoose": " 5.13.22",
+        "sc-game-base": "4.1.4-beta.0"
     },
     "devDependencies": {
         "@babel/preset-env": "^7.12.11",
