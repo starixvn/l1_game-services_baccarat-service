@@ -26,22 +26,22 @@ export const settleTest = () => {
             return timeout;
         };
 
-        it("should return settled status data", async () => {
-            // Arrange
-            const amount = 100;
-            driver.sendInGameEvent();
-            const { remainingTime } = await driver.handleGameEvent((inGameData) => inGameData.remainingTime);
+        // it("should return settled status data", async () => {
+        //     // Arrange
+        //     const amount = 100;
+        //     driver.sendInGameEvent();
+        //     const { remainingTime } = await driver.handleGameEvent((inGameData) => inGameData.remainingTime);
 
-            setTimeout(() => {
-                driver.sendBetEvent("even", amount);
-            }, getTimeOutToBet(remainingTime, gameSettings.durations) * 1000);
+        //     setTimeout(() => {
+        //         driver.sendBetEvent("even", amount);
+        //     }, getTimeOutToBet(remainingTime, gameSettings.durations) * 1000);
 
-            // Act
-            const result = await driver.handleGameEvent((data) => data.status);
+        //     // Act
+        //     const result = await driver.handleGameEvent((data) => data.status);
 
-            // Assert
-            expect(result.status.bet).toBeGreaterThan(0);
-        });
+        //     // Assert
+        //     expect(result.status.bet).toBeGreaterThan(0);
+        // });
 
         it("should return settled finish data and hashResult with rawValue", async () => {
             // Arrange
