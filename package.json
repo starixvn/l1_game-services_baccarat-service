@@ -35,7 +35,7 @@
         "sc-base-apis": "1.18.2",
         "sc-base-database": "1.11.1",
         "socket.io-prom-metrics": "1.0.3",
-        "axios": "1.7.4",
+        "axios": "1.13.2",
         "body-parser": "1.20.3",
         "mongoose": " 5.13.22"
     },
