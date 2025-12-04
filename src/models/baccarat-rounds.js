@@ -2,16 +2,22 @@ import mongoose from "mongoose";
 
 const modelName = "baccarat_phien";
 
-const card = {
-    card: Number,
-    type: Number,
-};
+const cardSchema = new mongoose.Schema(
+    {
+        card: Number,
+        type: Number,
+    },
+    { _id: false }
+);
 
-const hand = {
-    card1: card,
-    card2: card,
-    card3: card,
-};
+const handSchema = new mongoose.Schema(
+    {
+        card1: { type: cardSchema, required: false },
+        card2: { type: cardSchema, required: false },
+        card3: { type: cardSchema, required: false },
+    },
+    { _id: false }
+);
 
 const settlementResultSchema = new mongoose.Schema(
     {
@@ -29,8 +35,8 @@ const settlementResultSchema = new mongoose.Schema(
 
 const Schema = new mongoose.Schema({
     id: { type: Number, required: true },
-    player: { type: hand },
-    banker: { type: hand },
+    player: { type: handSchema, required: false },
+    banker: { type: handSchema, required: false },
     result: settlementResultSchema,
     time: { type: Date, default: new Date() },
     exchangeRateId: { type: Number, required: true },

@@ -1,9 +1,9 @@
 export default {
-    hostingPort: 8087,
+    hostingPort: 5000,
     apiSettings: {
         enabledApi: true,
-        apiUrl: "http://api.lumigame.com",
-        authUrl: "http://auth.lumigame.com",
+        apiUrl: "https://hd-api.lumigame.com",
+        authUrl: "https://hd-auth.lumigame.com",
         client: {
             id: "game-server",
             secret: "gameserver@20luminet&",
@@ -21,9 +21,9 @@ export default {
     },
     enabledLogs: true,
     database: {
-        url: "mongodb://localhost:27017",
+        url: "mongodb://hotdog_backend:HotdogBackend@10.10.50.12:39400,10.10.50.13:39400,10.10.50.14:39400/?replicaSet=SPLocal0&appName=Baccarat",
         options: {
-            dbName: "minigame",
+            dbName: "hotdog_minigame",
             useNewUrlParser: true,
             useUnifiedTopology: true,
         },
@@ -34,15 +34,15 @@ export default {
         env: "LOCAL",
     },
     authenticateSettings: {
-        url: "http://auth.lumigame.com",
+        url: "https://hd-auth.lumigame.com",
         id: "game-services",
         secret: "gameservices@20luminet&",
         requestTimeout: 10000,
-        useAuthenticate: false,
+        useAuthenticate: true,
         audiences: ["api", "admin-api"],
     },
     userServiceSettings: {
-        url: "http://127.0.0.1:5000",
+        url: "https://hd-proxy.lumigame.com/user",
     },
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
     enableMsgpackParser: false,
